@@ -4,3 +4,5 @@ CREATE TABLE [dbo].[Petros]
 [name] [varchar] (10) COLLATE Latin1_General_CI_AS NULL
 ) ON [PRIMARY]
 GO
+ALTER TABLE [dbo].[Petros] ADD CONSTRAINT [PK_Petros] PRIMARY KEY CLUSTERED  ([ID]) ON [PRIMARY]
+GO
