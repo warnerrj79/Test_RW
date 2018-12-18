@@ -1,14 +1,13 @@
-#Required Variables!!!
-$SourceControlDBFolder = "C:\Users\Administrator\Documents\Git\Test_RW\Test_RW"
-$TempDBName = New-DatabaseConnection -ServerInstance "ROB\BUILD" -Database "RW_TEST"
-$NugetPackageID = "pckTestRWx"
-$NugetPackageVersion = 1.0
-$NugetPackageOutputDir = "C:\nuget\Test_RWx"
+#Input parameters - required!!!
+Param(
+    [Parameter(Mandatory=$true)]
+    [RedGate.Versioning.Automation.Compare.SchemaSources.DatabaseConnection]$SourceConnection
+    ,[Parameter(Mandatory=$true)]
+    [RedGate.Versioning.Automation.Compare.SchemaSources.DatabaseConnection]$TargetConnection
+    )
 
-#Build baby build!!!!
+
+
+#Update the target database - there is no going back from here.....
 $errorActionPreference = "stop"
-$ValidatedSourceControlDBFolder = Invoke-DatabaseBuild $SourceControlDBFolder -TemporaryDatabase $TempDBName
-
-#Export Nuget Package to folder
-$NugetPackage = New-DatabaseBuildArtifact $ValidatedSourceControlDBFolder -PackageId $NugetPackageID -PackageVersion $NugetPackageVersion
-Export-DatabaseBuildArtifact $NugetPackage -Path $NugetPackageOutputDir
+Sync-DatabaseSchema -Source $SourceConnection -Target $TargetConnection
