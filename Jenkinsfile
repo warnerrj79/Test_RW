@@ -2,9 +2,9 @@
 node {
   stage('Build') {
     echo VersionNumber
-    sh 'pwd'
-    sh 'ls'
        powershell '''$errorActionPreference = "stop"
+       pwd
+       ls
        C:\\PS\\Build.ps1 -SourceControlDBFolder  -TempDBName (New-DatabaseConnection -ServerInstance ROB\\BUILD -Database RW_TEST -Username Jenkins -Password xxx) -NugetPackageID pckTestRWx -NugetPackageVersion "${env:VersionNumber}" -NugetPackageOutputDir C:\\nuget\\Test_RWp'''
   }
 
