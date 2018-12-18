@@ -13,7 +13,7 @@ node {
   }
 
   stage('Deploy to Dev') {
-    #echo 'Will be used soon'
+    //echo 'Will be used soon'
     powershell '''C:\\PS\\Sync.ps1 -SourceConnection (New-DatabaseConnection -ServerInstance ROB\\BUILD -Database RW_TEST -Username Jenkins -Password xxx) -TargetConnection (New-DatabaseConnection -ServerInstance ROB\\DEV -Database RW_TEST -Username Jenkins -Password xxx)
   }
 }
