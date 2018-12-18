@@ -1,0 +1,4 @@
+//Script//
+node {
+  checkout scm
+}
