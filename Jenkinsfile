@@ -4,7 +4,6 @@ node {
     echo VersionNumber
     dir('subDir') {
       checkout scm
-      echo pwd()
       def dty = pwd()
       echo dty
     }
