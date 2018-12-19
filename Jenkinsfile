@@ -4,7 +4,7 @@ node {
     echo VersionNumber
     dir('subDir') {
       checkout scm
-      echo pwd
+      echo pwd()
     }
        powershell '''
        pwd
