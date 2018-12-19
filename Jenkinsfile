@@ -4,12 +4,12 @@ node {
     echo VersionNumber
     dir('subDir') {
       checkout scm
-      def dty = pwd()
-      println dty
+      echo pwd
     }
-    
-       powershell """
-       C:\\PS\\Build.ps1 -SourceControlDBFolder "pwd()"  -TempDBName (New-DatabaseConnection -ServerInstance ROB\\BUILD -Database RW_TEST -Username Jenkins -Password xxx) -NugetPackageID pckTestRWx -NugetPackageVersion "$env:VersionNumber" -NugetPackageOutputDir C:\\nuget\\Test_RWp"""
+       powershell '''
+       pwd
+       Get-ChildItem
+       C:\\PS\\Build.ps1 -SourceControlDBFolder C:\\Users\\Administrator\\Documents\\Git\\Test_RW\\Test_RW  -TempDBName (New-DatabaseConnection -ServerInstance ROB\\BUILD -Database RW_TEST -Username Jenkins -Password xxx) -NugetPackageID pckTestRWx -NugetPackageVersion "${env:VersionNumber}" -NugetPackageOutputDir C:\\nuget\\Test_RWp'''
   }
 
   stage('Test') {
