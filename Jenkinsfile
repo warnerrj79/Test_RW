@@ -2,6 +2,9 @@
 node {
   stage('Build') {
     echo VersionNumber
+    dir('subDir') {
+      checkout scm
+    }
        powershell '''
        pwd
        Get-ChildItem
