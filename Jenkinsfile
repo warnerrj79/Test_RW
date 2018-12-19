@@ -2,7 +2,7 @@
 node {
   stage('Build') {
     echo VersionNumber
-    dir('subDir') {
+    dir('chkRobTest') {
       checkout scm
     
     }
