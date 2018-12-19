@@ -7,8 +7,8 @@ node {
       def dty = pwd()
       echo dty
     }
-       powershell '''
-       C:\\PS\\Build.ps1 -SourceControlDBFolder "${env:dty}"  -TempDBName (New-DatabaseConnection -ServerInstance ROB\\BUILD -Database RW_TEST -Username Jenkins -Password xxx) -NugetPackageID pckTestRWx -NugetPackageVersion "${env:VersionNumber}" -NugetPackageOutputDir C:\\nuget\\Test_RWp'''
+       powershell """"
+       C:\\PS\\Build.ps1 -SourceControlDBFolder "$dty"  -TempDBName (New-DatabaseConnection -ServerInstance ROB\\BUILD -Database RW_TEST -Username Jenkins -Password xxx) -NugetPackageID pckTestRWx -NugetPackageVersion "$env:VersionNumber" -NugetPackageOutputDir C:\\nuget\\Test_RWp"""
   }
 
   stage('Test') {
