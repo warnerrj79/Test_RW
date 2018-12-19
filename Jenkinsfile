@@ -4,6 +4,15 @@ node {
     echo VersionNumber
     dir('chkRobTest') {
       checkout scm
+
+      sh "pwd"
+
+
+      echo pwd() 
+      def dty = pwd()
+
+      echo dty
+      
     
     }
        powershell '''
