@@ -1,7 +1,7 @@
 //Script//
 node {
   stage('Build') {
-    def VersionNumber = 1.9
+    def VersionNumber = "1.9"
 	echo VersionNumber
     dir('chkRobTest') {
       checkout scm
