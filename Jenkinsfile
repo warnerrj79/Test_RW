@@ -24,7 +24,7 @@ node {
     //echo 'Will be used soon'
     timeout(time: 10, unit: 'MINUTES') {
 		input message:'Approve?',
-		ok: 'Deploy',
+		ok: 'Deploy'
 	}
 	
 	powershell '''C:\\PS\\Sync.ps1 -SourceConnection (New-DatabaseConnection -ServerInstance ROB\\BUILD -Database RW_TEST -Username Jenkins -Password xxx) -TargetConnection (New-DatabaseConnection -ServerInstance ROB\\DEV -Database RW_TEST -Username Jenkins -Password xxx)'''
