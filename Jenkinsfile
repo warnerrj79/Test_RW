@@ -2,6 +2,10 @@
 echo "${env.BUILD_NUMBER}"
 def VersionNumber = "1.9"
 
+def VersionNumber2 = "1.${env.BUILD_NUMBER}"
+
+echo VersionNumber2
+
 node {
   stage('Build') {
     //def VersionNumber = "1.9"
