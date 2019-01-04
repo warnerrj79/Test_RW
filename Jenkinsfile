@@ -27,7 +27,7 @@ node {
   
   stage('Create Release') {
     //def VersionNumber = "1.9"
-	powershell """C:\\PS\\CreateRelease.ps1 -SourceNugetPackage ${NuGetOutputDir}${NuGetName}"${VersionNumber}".nupkg -DevDBName (${DevDBName) -NugetPackageOutputDir ${NuGetOutputDir}${NuGetName}${VersionNumber}"""
+	powershell """C:\\PS\\CreateRelease.ps1 -SourceNugetPackage ${NuGetOutputDir}${NuGetName}"${VersionNumber}".nupkg -DevDBName (${DevDBName}) -NugetPackageOutputDir ${NuGetOutputDir}${NuGetName}${VersionNumber}"""
   }
     
   stage('Deploy to Dev') {
