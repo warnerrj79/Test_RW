@@ -2,7 +2,7 @@
 def SourceControlDBFolder = "C:\\Users\\Administrator\\Documents\\Git\\Test_RW\\Test_RW"
 def TempDBName = "New-DatabaseConnection -ServerInstance ROB\\BUILD -Database RW_TEST -Username Jenkins -Password xxx"
 def NuGetName = "NG_RW_Test"
-def VersionNumber = "1.${env.BUILD_NUMBER}"
+def NuGetVersion = "1.${env.BUILD_NUMBER}"
 def NuGetOutputDir = "C:\\nuget\\RW_Test\\"
 def DevDBName = "New-DatabaseConnection -ServerInstance ROB\\DEV -Database RW_TEST -Username Jenkins -Password xxx"
 
@@ -18,7 +18,7 @@ node {
        pwd
        
        
-	   C:\\PS\\Build.ps1 -SourceControlDBFolder ${SourceControlDBFolder}  -TempDBName (${TempDBName}) -NugetPackageID ${NuGetName} -NugetPackageVersion "${VersionNumber}" -NugetPackageOutputDir ${NuGetOutputDir}"""
+	   C:\\PS\\Build.ps1 -SourceControlDBFolder ${SourceControlDBFolder}  -TempDBName (${TempDBName}) -NugetPackageID ${NuGetName} -NugetPackageVersion "${NuGetVersion}" -NugetPackageOutputDir ${NuGetOutputDir}"""
   }
 
   stage('Test') {
@@ -26,8 +26,7 @@ node {
   }
   
   stage('Create Release') {
-    //def VersionNumber = "1.9"
-	powershell """C:\\PS\\CreateRelease.ps1 -SourceNugetPackage ${NuGetOutputDir}${NuGetName}"${VersionNumber}".nupkg -DevDBName (${DevDBName}) -NugetPackageOutputDir ${NuGetOutputDir}${NuGetName}${VersionNumber}"""
+ 	powershell """C:\\PS\\CreateRelease.ps1 -SourceNugetPackage ${NuGetOutputDir}${NuGetName}."${NuGetVersion}".nupkg -DevDBName (${DevDBName}) -NugetPackageOutputDir ${NuGetOutputDir}${NuGetName}${NuGetVersion}"""
   }
     
   stage('Deploy to Dev') {
