@@ -20,7 +20,7 @@ node {
        pwd
        
        
-	   C:\\PS\\Build.ps1 -SourceControlDBFolder C:\\Users\\Administrator\\Documents\\Git\\Test_RW\\Test_RW  -TempDBName (New-DatabaseConnection -ServerInstance ROB\\BUILD -Database RW_TEST -Username Jenkins -Password xxx) -NugetPackageID pckTestRWx -NugetPackageVersion "${VersionNumber}" -NugetPackageOutputDir C:\\nuget\\Test_RWp"""
+	   C:\\PS\\Build.ps1 -SourceControlDBFolder C:\\Users\\Administrator\\Documents\\Git\\Test_RW\\Test_RW  -TempDBName (New-DatabaseConnection -ServerInstance ROB\\BUILD -Database RW_TEST -Username Jenkins -Password xxx) -NugetPackageID pckTestRWx -NugetPackageVersion "${VersionNumber2}" -NugetPackageOutputDir C:\\nuget\\Test_RWp"""
   }
 
   stage('Test') {
@@ -29,7 +29,7 @@ node {
   
   stage('Create Release') {
     //def VersionNumber = "1.9"
-	powershell """C:\\PS\\CreateRelease.ps1 -SourceNugetPackage C:\\nuget\\Test_RWp\\pckTestRWx."${VersionNumber}".nupkg -DevDBName (New-DatabaseConnection -ServerInstance ROB\\DEV -Database RW_TEST -Username Jenkins -Password xxx) -NugetPackageOutputDir C:\\nuget\\Test_RWp\\Test_RWv4"""
+	powershell """C:\\PS\\CreateRelease.ps1 -SourceNugetPackage C:\\nuget\\Test_RWp\\pckTestRWx."${VersionNumber2}".nupkg -DevDBName (New-DatabaseConnection -ServerInstance ROB\\DEV -Database RW_TEST -Username Jenkins -Password xxx) -NugetPackageOutputDir C:\\nuget\\Test_RWp\\Test_RWv4"""
   }
     
   stage('Deploy to Dev') {
