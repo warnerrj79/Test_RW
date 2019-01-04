@@ -26,7 +26,7 @@ node {
   }
   
   stage('Create Release') {
- 	powershell """C:\\PS\\CreateRelease.ps1 -SourceNugetPackage ${NuGetOutputDir}${NuGetName}."${NuGetVersion}".nupkg -DevDBName (${DevDBName}) -NugetPackageOutputDir ${NuGetOutputDir}${NuGetName}${NuGetVersion}"""
+ 	powershell """C:\\PS\\CreateRelease.ps1 -SourceNugetPackage ${NuGetOutputDir}${NuGetName}."${NuGetVersion}".nupkg -DBName (${DBName}) -NugetPackageOutputDir ${NuGetOutputDir}${NuGetName}${NuGetVersion}"""
   }
     
   stage('Deploy to Dev') {
@@ -37,7 +37,7 @@ node {
 		
 	}
 	
-	//powershell '''C:\\PS\\Sync.ps1 -SourceConnection (New-DatabaseConnection -ServerInstance ROB\\BUILD -Database RW_TEST -Username Jenkins -Password xxx) -TargetConnection (New-DatabaseConnection -ServerInstance ROB\\DEV -Database RW_TEST -Username Jenkins -Password xxx)'''
+	powershell """C:\\PS\\Deploy.ps1 -SourceNugetPackage ${NuGetOutputDir}${NuGetName}."${NuGetVersion}".nupkg -DBName (${DBName})"""
 	
 	
   }
