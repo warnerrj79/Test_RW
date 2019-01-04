@@ -1,6 +1,8 @@
 //Script//
-def VersionNumber2 = "1.${env.BUILD_NUMBER}"
 def SourceControlDBFolder = "C:\\Users\\Administrator\\Documents\\Git\\Test_RW\\Test_RW"
+def TempDBName = "New-DatabaseConnection -ServerInstance ROB\\BUILD -Database RW_TEST -Username Jenkins -Password xxx"
+def NuGetName = NG_RW_Test
+def VersionNumber = "1.${env.BUILD_NUMBER}"
 
 node {
   stage('Build') {
@@ -14,7 +16,7 @@ node {
        pwd
        
        
-	   C:\\PS\\Build.ps1 -SourceControlDBFolder ${SourceControlDBFolder}  -TempDBName (New-DatabaseConnection -ServerInstance ROB\\BUILD -Database RW_TEST -Username Jenkins -Password xxx) -NugetPackageID pckTestRWx -NugetPackageVersion "${VersionNumber2}" -NugetPackageOutputDir C:\\nuget\\Test_RWp"""
+	   C:\\PS\\Build.ps1 -SourceControlDBFolder ${SourceControlDBFolder}  -TempDBName (${TempDBName}) -NugetPackageID pckTestRWx -NugetPackageVersion "${VersionNumber}" -NugetPackageOutputDir C:\\nuget\\Test_RWp"""
   }
 
   stage('Test') {
