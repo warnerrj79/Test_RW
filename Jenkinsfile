@@ -1,4 +1,6 @@
 //Script//
+echo "${env.BUILD_NUMBER}"
+
 node {
   stage('Build') {
     def VersionNumber = "1.9"
