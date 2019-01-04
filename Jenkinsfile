@@ -3,7 +3,7 @@ def SourceControlDBFolder = "C:\\Users\\Administrator\\Documents\\Git\\Test_RW\\
 def TempDBName = "New-DatabaseConnection -ServerInstance ROB\\BUILD -Database RW_TEST -Username Jenkins -Password xxx"
 def NuGetName = "NG_RW_Test"
 def VersionNumber = "1.${env.BUILD_NUMBER}"
-def NuGetOutputDir = "C:\\nuget\\RW_Test\"
+def NuGetOutputDir = "C:\\nuget\\RW_Test\\"
 def DevDBName = "New-DatabaseConnection -ServerInstance ROB\\DEV -Database RW_TEST -Username Jenkins -Password xxx"
 
 node {
