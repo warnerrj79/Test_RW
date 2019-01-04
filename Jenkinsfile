@@ -21,21 +21,18 @@ node {
   }
   
   stage('Create Release') {
-    echo 'This is a test stage that is not used yet. Might be used later...... :)'
+    powershell """C:\\PS\\CreateRelease.ps1 -SourceNugetPackage C:\\nuget\\Test_RWp\\pckTestRWx."${VersionNumber}".nupkg -DevDBName (New-DatabaseConnection -ServerInstance ROB\\DEV -Database RW_TEST -Username Jenkins -Password xxx) -NugetPackageOutputDir C:\\nuget\\Test_RWp\\Test_RWv4"""
   }
-  
-    stage('Export Release') {
-    echo 'This is a test stage that is not used yet. Might be used later...... :)'
-  }
-
+    
   stage('Deploy to Dev') {
     //echo 'Will be used soon'
     timeout(time: 10, unit: 'MINUTES') {
 		input message:'Approve?',
 		ok: 'Deploy'
+		
 	}
 	
-	powershell '''C:\\PS\\Sync.ps1 -SourceConnection (New-DatabaseConnection -ServerInstance ROB\\BUILD -Database RW_TEST -Username Jenkins -Password xxx) -TargetConnection (New-DatabaseConnection -ServerInstance ROB\\DEV -Database RW_TEST -Username Jenkins -Password xxx)'''
+	//powershell '''C:\\PS\\Sync.ps1 -SourceConnection (New-DatabaseConnection -ServerInstance ROB\\BUILD -Database RW_TEST -Username Jenkins -Password xxx) -TargetConnection (New-DatabaseConnection -ServerInstance ROB\\DEV -Database RW_TEST -Username Jenkins -Password xxx)'''
 	
 	
   }
