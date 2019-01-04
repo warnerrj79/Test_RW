@@ -1,9 +1,10 @@
 //Script//
 echo "${env.BUILD_NUMBER}"
+def VersionNumber = "1.9"
 
 node {
   stage('Build') {
-    def VersionNumber = "1.9"
+    //def VersionNumber = "1.9"
 	//echo VersionNumber
     dir('chkRobTest') {
       checkout scm
@@ -23,7 +24,7 @@ node {
   }
   
   stage('Create Release') {
-    def VersionNumber = "1.9"
+    //def VersionNumber = "1.9"
 	powershell """C:\\PS\\CreateRelease.ps1 -SourceNugetPackage C:\\nuget\\Test_RWp\\pckTestRWx."${VersionNumber}".nupkg -DevDBName (New-DatabaseConnection -ServerInstance ROB\\DEV -Database RW_TEST -Username Jenkins -Password xxx) -NugetPackageOutputDir C:\\nuget\\Test_RWp\\Test_RWv4"""
   }
     
