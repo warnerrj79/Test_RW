@@ -19,6 +19,14 @@ node {
   stage('Test') {
     echo 'This is a test stage that is not used yet. Might be used later...... :)'
   }
+  
+  stage('Create Release') {
+    echo 'This is a test stage that is not used yet. Might be used later...... :)'
+  }
+  
+    stage('Export Release') {
+    echo 'This is a test stage that is not used yet. Might be used later...... :)'
+  }
 
   stage('Deploy to Dev') {
     //echo 'Will be used soon'
