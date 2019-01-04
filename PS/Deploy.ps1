@@ -3,18 +3,16 @@ Param(
     [Parameter(Mandatory=$true)]
     [string]$SourceNugetPackage
     ,[Parameter(Mandatory=$true)]
-    [RedGate.Versioning.Automation.Compare.SchemaSources.DatabaseConnection]$DevDBName
-    ,[Parameter(Mandatory=$true)]
-    [string]$NugetPackageOutputDir
+    [RedGate.Versioning.Automation.Compare.SchemaSources.DatabaseConnection]$DBName
 )
 
 #Required Variables!!!
 #$SourceNugetPackage = "C:\nuget\Test_RWp\pckTestRWx.1.9.nupkg"
-#$DevDBName = New-DatabaseConnection -ServerInstance "ROB\DEV" -Database "RW_TEST" -Username Jenkins -Password xxx
+#$DBName = New-DatabaseConnection -ServerInstance "ROB\DEV" -Database "RW_TEST" -Username Jenkins -Password xxx
 #$NugetPackageOutputDirC:\nuget\Test_RWp\Test_RWv2
 
 #Create release nuget and export to directory!!!!
 $errorActionPreference = "stop"
-$Release = New-DatabaseReleaseArtifact -Source (Import-DatabasebuildArtifact $SourceNugetPackage) -Target ($DevDBName)
+$Release = New-DatabaseReleaseArtifact -Source (Import-DatabasebuildArtifact $SourceNugetPackage) -Target ($DBName)
 
-$Release | Export-DatabaseReleaseArtifact -Path $NugetPackageOutputDir
+Use-DatabaseReleaseArtifact $Release -DeployTo $DBName

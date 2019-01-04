@@ -4,7 +4,7 @@ def TempDBName = "New-DatabaseConnection -ServerInstance ROB\\BUILD -Database RW
 def NuGetName = "NG_RW_Test"
 def NuGetVersion = "1.${env.BUILD_NUMBER}"
 def NuGetOutputDir = "C:\\nuget\\RW_Test\\"
-def DevDBName = "New-DatabaseConnection -ServerInstance ROB\\DEV -Database RW_TEST -Username Jenkins -Password xxx"
+def DBName = "New-DatabaseConnection -ServerInstance ROB\\DEV -Database RW_TEST -Username Jenkins -Password xxx"
 
 node {
   stage('Build') {
