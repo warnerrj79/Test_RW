@@ -16,7 +16,7 @@ node {
        pwd
        
        
-	   C:\\PS\\Build.ps1 -SourceControlDBFolder ${SourceControlDBFolder}  -TempDBName (${TempDBName}) -NugetPackageID pckTestRWx -NugetPackageVersion "${VersionNumber}" -NugetPackageOutputDir C:\\nuget\\Test_RWp"""
+	   C:\\PS\\Build.ps1 -SourceControlDBFolder "${SourceControlDBFolder}"  -TempDBName "(${TempDBName})" -NugetPackageID pckTestRWx -NugetPackageVersion "${VersionNumber}" -NugetPackageOutputDir C:\\nuget\\Test_RWp"""
   }
 
   stage('Test') {
