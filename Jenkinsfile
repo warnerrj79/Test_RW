@@ -1,26 +1,20 @@
 //Script//
-echo "${env.BUILD_NUMBER}"
-def VersionNumber = "1.9"
-
 def VersionNumber2 = "1.${env.BUILD_NUMBER}"
-
-echo VersionNumber2
+def SourceControlDBFolder = "C:\\Users\\Administrator\\Documents\\Git\\Test_RW\\Test_RW"
 
 node {
   stage('Build') {
-    //def VersionNumber = "1.9"
-	//echo VersionNumber
+    
     dir('chkRobTest') {
       checkout scm
   
     }
-       //def VersionNumber = "1.9"
-	   powershell """
+       powershell """
        Write-Host "hello pwd"
        pwd
        
        
-	   C:\\PS\\Build.ps1 -SourceControlDBFolder C:\\Users\\Administrator\\Documents\\Git\\Test_RW\\Test_RW  -TempDBName (New-DatabaseConnection -ServerInstance ROB\\BUILD -Database RW_TEST -Username Jenkins -Password xxx) -NugetPackageID pckTestRWx -NugetPackageVersion "${VersionNumber2}" -NugetPackageOutputDir C:\\nuget\\Test_RWp"""
+	   C:\\PS\\Build.ps1 -SourceControlDBFolder ${SourceControlDBFolder}  -TempDBName (New-DatabaseConnection -ServerInstance ROB\\BUILD -Database RW_TEST -Username Jenkins -Password xxx) -NugetPackageID pckTestRWx -NugetPackageVersion "${VersionNumber2}" -NugetPackageOutputDir C:\\nuget\\Test_RWp"""
   }
 
   stage('Test') {
