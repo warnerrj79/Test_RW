@@ -21,7 +21,8 @@ node {
   }
   
   stage('Create Release') {
-    powershell """C:\\PS\\CreateRelease.ps1 -SourceNugetPackage C:\\nuget\\Test_RWp\\pckTestRWx."${VersionNumber}".nupkg -DevDBName (New-DatabaseConnection -ServerInstance ROB\\DEV -Database RW_TEST -Username Jenkins -Password xxx) -NugetPackageOutputDir C:\\nuget\\Test_RWp\\Test_RWv4"""
+    def VersionNumber = "1.9"
+	powershell """C:\\PS\\CreateRelease.ps1 -SourceNugetPackage C:\\nuget\\Test_RWp\\pckTestRWx."${VersionNumber}".nupkg -DevDBName (New-DatabaseConnection -ServerInstance ROB\\DEV -Database RW_TEST -Username Jenkins -Password xxx) -NugetPackageOutputDir C:\\nuget\\Test_RWp\\Test_RWv4"""
   }
     
   stage('Deploy to Dev') {
